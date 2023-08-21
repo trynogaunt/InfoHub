@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Character;
 use App\Form\Character1Type;
+use App\Repository\AttackInfosRepository;
+use App\Repository\AttackRepository;
 use App\Repository\CharacterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,10 +45,13 @@ class CharacterController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_character_show', methods: ['GET'])]
-    public function show(Character $character): Response
+    public function show(Character $character , AttackInfosRepository $attackInfosRepository , AttackRepository $attackRepository): Response
     {
         return $this->render('character/show.html.twig', [
             'character' => $character,
+            'characterInfos' => $attackInfosRepository->findBy(['character' => $character->getId()]),
+            'baseAttack' => $attackRepository->findAll()
+
         ]);
     }
 

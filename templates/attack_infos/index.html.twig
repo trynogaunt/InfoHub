@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AttackInfos index{% endblock %}
+
+{% block body %}
+    <h1>AttackInfos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Damage</th>
+                <th>Stamina_use</th>
+                <th>Speed</th>
+                <th>Hitstun</th>
+                <th>Pin</th>
+                <th>Pin_duration</th>
+                <th>Hyperarmor</th>
+                <th>Hyperarmor_startup</th>
+                <th>Superarmor</th>
+                <th>Superarmor_startup</th>
+                <th>Wallsplat</th>
+                <th>Unblockable</th>
+                <th>Undodgeable</th>
+                <th>Feintable</th>
+                <th>Guaranted</th>
+                <th>Bleed</th>
+                <th>Bleed_damage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attack_info in attack_infos %}
+            <tr>
+                <td>{{ attack_info.id }}</td>
+                <td>{{ attack_info.damage }}</td>
+                <td>{{ attack_info.staminaUse }}</td>
+                <td>{{ attack_info.speed }}</td>
+                <td>{{ attack_info.hitstun }}</td>
+                <td>{{ attack_info.pin ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.pinDuration }}</td>
+                <td>{{ attack_info.hyperarmor ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.hyperarmorStartup }}</td>
+                <td>{{ attack_info.superarmor ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.superarmorStartup }}</td>
+                <td>{{ attack_info.wallsplat ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.unblockable ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.undodgeable ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.feintable ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.guaranted ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.bleed ? 'Yes' : 'No' }}</td>
+                <td>{{ attack_info.bleedDamage }}</td>
+                <td>
+                    <a href="{{ path('app_attack_infos_show', {'id': attack_info.id}) }}">show</a>
+                    <a href="{{ path('app_attack_infos_edit', {'id': attack_info.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_attack_infos_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AttackInfos{% endblock %}
+
+{% block body %}
+    <h1>AttackInfos</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ attack_info.id }}</td>
+            </tr>
+            <tr>
+                <th>Damage</th>
+                <td>{{ attack_info.damage }}</td>
+            </tr>
+            <tr>
+                <th>Stamina_use</th>
+                <td>{{ attack_info.staminaUse }}</td>
+            </tr>
+            <tr>
+                <th>Speed</th>
+                <td>{{ attack_info.speed }}</td>
+            </tr>
+            <tr>
+                <th>Hitstun</th>
+                <td>{{ attack_info.hitstun }}</td>
+            </tr>
+            <tr>
+                <th>Pin</th>
+                <td>{{ attack_info.pin ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Pin_duration</th>
+                <td>{{ attack_info.pinDuration }}</td>
+            </tr>
+            <tr>
+                <th>Hyperarmor</th>
+                <td>{{ attack_info.hyperarmor ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Hyperarmor_startup</th>
+                <td>{{ attack_info.hyperarmorStartup }}</td>
+            </tr>
+            <tr>
+                <th>Superarmor</th>
+                <td>{{ attack_info.superarmor ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Superarmor_startup</th>
+                <td>{{ attack_info.superarmorStartup }}</td>
+            </tr>
+            <tr>
+                <th>Wallsplat</th>
+                <td>{{ attack_info.wallsplat ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Unblockable</th>
+                <td>{{ attack_info.unblockable ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Undodgeable</th>
+                <td>{{ attack_info.undodgeable ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Feintable</th>
+                <td>{{ attack_info.feintable ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Guaranted</th>
+                <td>{{ attack_info.guaranted ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Bleed</th>
+                <td>{{ attack_info.bleed ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Bleed_damage</th>
+                <td>{{ attack_info.bleedDamage }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_attack_infos_index') }}">back to list</a>
+
+    <a href="{{ path('app_attack_infos_edit', {'id': attack_info.id}) }}">edit</a>
+
+    {{ include('attack_infos/_delete_form.html.twig') }}
+{% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CharacterRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -52,6 +54,14 @@ class Character
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
     private ?string $lock_speed_backward = null;
+
+    #[ORM\OneToMany(mappedBy: 'character', targetEntity: AttackInfos::class)]
+    private Collection $has;
+
+    public function __construct()
+    {
+        $this->has = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -210,6 +220,36 @@ class Character
     public function setLockSpeedBackward(string $lock_speed_backward): static
     {
         $this->lock_speed_backward = $lock_speed_backward;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AttackInfos>
+     */
+    public function getHas(): Collection
+    {
+        return $this->has;
+    }
+
+    public function addHa(AttackInfos $ha): static
+    {
+        if (!$this->has->contains($ha)) {
+            $this->has->add($ha);
+            $ha->setCharacter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHa(AttackInfos $ha): static
+    {
+        if ($this->has->removeElement($ha)) {
+            // set the owning side to null (unless already changed)
+            if ($ha->getCharacter() === $this) {
+                $ha->setCharacter(null);
+            }
+        }
 
         return $this;
     }

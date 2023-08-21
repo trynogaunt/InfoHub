@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit AttackInfos{% endblock %}
+
+{% block body %}
+    <h1>Edit AttackInfos</h1>
+
+    {{ include('attack_infos/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_attack_infos_index') }}">back to list</a>
+
+    {{ include('attack_infos/_delete_form.html.twig') }}
+{% endblock %}

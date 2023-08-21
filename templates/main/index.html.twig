@@ -12,6 +12,7 @@
     <h1>Infohub</h1>
     {% for character in characters %}
         <p>{{ character.name }}</p>
+        <a href="{{ path('app_character_show', {'id': character.id}) }}">show</a>
     {%endfor%}
 
 </div>
