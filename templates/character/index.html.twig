@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Character index{% endblock %}
+
+{% block body %}
+    <h1>Character index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Faction</th>
+                <th>Health</th>
+                <th>Stamina</th>
+                <th>Guard_type</th>
+                <th>Guard_direction</th>
+                <th>Unlock_enhanced</th>
+                <th>Sprint_speed</th>
+                <th>Lock_speed</th>
+                <th>Forward_dodge_recovery</th>
+                <th>Lock_speed_side</th>
+                <th>Lock_speed_backward</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for character in characters %}
+            <tr>
+                <td>{{ character.id }}</td>
+                <td>{{ character.name }}</td>
+                <td>{{ character.type }}</td>
+                <td>{{ character.faction }}</td>
+                <td>{{ character.health }}</td>
+                <td>{{ character.stamina }}</td>
+                <td>{{ character.guardType }}</td>
+                <td>{{ character.guardDirection }}</td>
+                <td>{{ character.unlockEnhanced ? 'Yes' : 'No' }}</td>
+                <td>{{ character.sprintSpeed }}</td>
+                <td>{{ character.lockSpeed }}</td>
+                <td>{{ character.forwardDodgeRecovery }}</td>
+                <td>{{ character.lockSpeedSide }}</td>
+                <td>{{ character.lockSpeedBackward }}</td>
+                <td>
+                    <a href="{{ path('app_character_show', {'id': character.id}) }}">show</a>
+                    <a href="{{ path('app_character_edit', {'id': character.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_character_new') }}">Create new</a>
+{% endblock %}

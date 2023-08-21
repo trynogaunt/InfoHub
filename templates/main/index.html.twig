@@ -10,5 +10,9 @@
 
 <div class="example-wrapper">
     <h1>Infohub</h1>
+    {% for character in characters %}
+        <p>{{ character.name }}</p>
+    {%endfor%}
+
 </div>
 {% endblock %}

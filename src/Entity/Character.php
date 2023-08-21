@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CharacterRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CharacterRepository::class)]
@@ -16,6 +17,12 @@ class Character
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $type = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $faction = null;
+
     #[ORM\Column]
     private ?int $health = null;
 
@@ -23,7 +30,28 @@ class Character
     private ?int $stamina = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $class = null;
+    private ?string $guard_type = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $guard_direction = null;
+
+    #[ORM\Column]
+    private ?bool $unlock_enhanced = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
+    private ?string $sprint_speed = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
+    private ?string $lock_speed = null;
+
+    #[ORM\Column]
+    private ?int $forward_dodge_recovery = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
+    private ?string $lock_speed_side = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
+    private ?string $lock_speed_backward = null;
 
     public function getId(): ?int
     {
@@ -38,6 +66,30 @@ class Character
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getFaction(): ?string
+    {
+        return $this->faction;
+    }
+
+    public function setFaction(string $faction): static
+    {
+        $this->faction = $faction;
 
         return $this;
     }
@@ -66,14 +118,98 @@ class Character
         return $this;
     }
 
-    public function getClass(): ?string
+    public function getGuardType(): ?string
     {
-        return $this->class;
+        return $this->guard_type;
     }
 
-    public function setClass(string $class): static
+    public function setGuardType(string $guard_type): static
     {
-        $this->class = $class;
+        $this->guard_type = $guard_type;
+
+        return $this;
+    }
+
+    public function getGuardDirection(): ?string
+    {
+        return $this->guard_direction;
+    }
+
+    public function setGuardDirection(string $guard_direction): static
+    {
+        $this->guard_direction = $guard_direction;
+
+        return $this;
+    }
+
+    public function isUnlockEnhanced(): ?bool
+    {
+        return $this->unlock_enhanced;
+    }
+
+    public function setUnlockEnhanced(bool $unlock_enhanced): static
+    {
+        $this->unlock_enhanced = $unlock_enhanced;
+
+        return $this;
+    }
+
+    public function getSprintSpeed(): ?string
+    {
+        return $this->sprint_speed;
+    }
+
+    public function setSprintSpeed(string $sprint_speed): static
+    {
+        $this->sprint_speed = $sprint_speed;
+
+        return $this;
+    }
+
+    public function getLockSpeed(): ?string
+    {
+        return $this->lock_speed;
+    }
+
+    public function setLockSpeed(string $lock_speed): static
+    {
+        $this->lock_speed = $lock_speed;
+
+        return $this;
+    }
+
+    public function getForwardDodgeRecovery(): ?int
+    {
+        return $this->forward_dodge_recovery;
+    }
+
+    public function setForwardDodgeRecovery(int $forward_dodge_recovery): static
+    {
+        $this->forward_dodge_recovery = $forward_dodge_recovery;
+
+        return $this;
+    }
+
+    public function getLockSpeedSide(): ?string
+    {
+        return $this->lock_speed_side;
+    }
+
+    public function setLockSpeedSide(string $lock_speed_side): static
+    {
+        $this->lock_speed_side = $lock_speed_side;
+
+        return $this;
+    }
+
+    public function getLockSpeedBackward(): ?string
+    {
+        return $this->lock_speed_backward;
+    }
+
+    public function setLockSpeedBackward(string $lock_speed_backward): static
+    {
+        $this->lock_speed_backward = $lock_speed_backward;
 
         return $this;
     }

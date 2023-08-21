@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230818231337 extends AbstractMigration
+final class Version20230821161922 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,15 +20,15 @@ final class Version20230818231337 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SEQUENCE character_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE character (id INT NOT NULL, name VARCHAR(255) NOT NULL, health INT NOT NULL, stamina INT NOT NULL, class VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('ALTER TABLE character ADD lock_speed_side NUMERIC(10, 0) NOT NULL');
+        $this->addSql('ALTER TABLE character ADD lock_speed_backward NUMERIC(10, 0) NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP SEQUENCE character_id_seq CASCADE');
-        $this->addSql('DROP TABLE character');
+        $this->addSql('ALTER TABLE character DROP lock_speed_side');
+        $this->addSql('ALTER TABLE character DROP lock_speed_backward');
     }
 }
